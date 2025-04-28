@@ -122,6 +122,8 @@ final class ProjectController extends AbstractController
         UserRepository $userRepository,
         ValidatorInterface $validator
     ): JsonResponse {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $data = json_decode($request->getContent(), true);
 
         if (isset($data['name'])) {
